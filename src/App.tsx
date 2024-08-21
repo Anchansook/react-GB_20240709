@@ -5,7 +5,7 @@ import './App.css';
 // import Properties from './component_manage/Properties';
 // import Gallery from './component_manage/example/Example1';
 // import ConditionalRender from './component_manage/ConditionalRender';
-// import Example2 from './component_manage/example/Example2';
+import Example2 from './component_manage/example/Example2';
 import ListRender from './component_manage/ListRender';
 
 //# npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
@@ -24,7 +24,7 @@ function App() {
       {/* <Properties /> */}
       {/* <Gallery /> */}
       {/* <ConditionalRender /> */}
-      {/* <Example2 /> */}
+      <Example2 />
       <ListRender />
     </>
   );

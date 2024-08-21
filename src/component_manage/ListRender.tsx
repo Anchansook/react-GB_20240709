@@ -19,14 +19,25 @@ export default function ListRender() {
     }
 
     const counts2 = new Array(10).fill(0);
+    // .fill(0) : 10개로 생성한 배열에 값을 0으로 채우겠다.
+    // = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     // 특정 조건에 따라 반복 렌더링 방법
+    const employees = [
+        {name: '홍길동', department: '재무'},
+        {name: '이영희', department: '영업'},
+        {name: '김철수', department: '재무'},
+        {name: '이성계', department: '개발'}
+    ];
 
+    const fiEmployees = employees.filter(item => item.department === '재무');
+    // fiEmployees = [{name: '홍길동', department: '재무'}, {name: '김철수', department: '재무'}];
 
     return (
         <div>
             {listItems}
             {counts.map(item => <h5 key={item}>반복작업</h5>)}
+            {fiEmployees.map((item, index) => <h5 key={index}>{`이름 : ${item.name} 부서 : ${item.department}`}</h5>)}
         </div>
     )
 }
