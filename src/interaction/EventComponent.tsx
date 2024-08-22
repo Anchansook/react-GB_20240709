@@ -62,6 +62,7 @@ export default function EventComponent() {
                 </div>
             ))}
 
+            {/* 일반 변수에 담긴 값은 렌더링하지 못함 */}
             <h1>{count}</h1>
             <button onClick={onIncrease}>+</button>
         </>
