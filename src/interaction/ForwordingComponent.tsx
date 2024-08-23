@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 // - 부모 컴포넌트의 자식 컴포넌트 중 해당 상태를 사용하지 않는 컴포넌트까지 리렌더링 됨
 // - 코드의 복잡성(컴포넌트의 속성 복잡성)이 증가
 //& - 이 문제를 해결하기 위해 '글로벌 상태로 관리'하는 방법이 파생됨
-// - 글로벌 상태 관리 기법으로 context, Redux, **zustand**라는 기법이 존재 
+// - 글로벌 상태 관리 기법으로 context, Redux, **zustand**라는 기법이 존재 (라이브러리)
 
 export default function ForwordingComponent() {
 
