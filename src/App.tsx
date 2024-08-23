@@ -8,7 +8,8 @@ import './App.css';
 // import Example2 from './component_manage/example/Example2';
 // import ListRender from './component_manage/ListRender';
 // import EventComponent from './interaction/EventComponent';
-import StateComponent from './interaction/StateComponent';
+// import StateComponent from './interaction/StateComponent';
+import ForwordingComponent from './interaction/ForwordingComponent';
 
 //# npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -31,7 +32,8 @@ function App() {
 
       {/* === interaction === */}
       {/* <EventComponent /> */}
-      <StateComponent />
+      {/* <StateComponent /> */}
+      <ForwordingComponent />
     </>
   );
 }
