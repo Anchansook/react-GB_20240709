@@ -11,7 +11,8 @@ import './App.css';
 // import StateComponent from './interaction/StateComponent';
 // import ForwordingComponent from './interaction/ForwordingComponent';
 // import HookComponent1 from './hook/HookComponent1';
-import HookComponent2 from './hook/HookComponent2';
+// import HookComponent2 from './hook/HookComponent2';
+import CustomHook from './hook/CustomHook';
 
 //# npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -39,7 +40,8 @@ function App() {
 
       {/* === hook === */}
       {/* <HookComponent1 /> */}
-      <HookComponent2 />
+      {/* <HookComponent2 /> */}
+      <CustomHook />
     </>
   );
 }
