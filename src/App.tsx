@@ -5,6 +5,7 @@ import CurlyBraces from './component/CurlyBraces';
 import Properties from './component_manage/Properties';
 import Gallery from './component_manage/example/Example1';
 import ConditionalRender from './component_manage/ConditionalRender';
+import Example1 from './component_manage/example/Example1';
 import Example2 from './component_manage/example/Example2';
 import ListRender from './component_manage/ListRender';
 import EventComponent from './interaction/EventComponent';
@@ -13,7 +14,9 @@ import ForwordingComponent from './interaction/ForwordingComponent';
 import HookComponent1 from './hook/HookComponent1';
 import HookComponent2 from './hook/HookComponent2';
 import CustomHook from './hook/CustomHook';
-import { Route, Routes } from 'react-router';
+import { Outlet, Route, Routes } from 'react-router';
+import QueryString from './router/QueryString';
+import PathVariable from './router/PathVariable';
 
 //& npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -40,23 +43,50 @@ import { Route, Routes } from 'react-router';
 // - element 속성 : 렌더링할 컴포넌트 지정, 요소를 넣어도 된다.(ex_ element={<h1>기본 페이지</h1>})
 // - index 속성 : 현재 경로의 기본 라우터로 지정
 
+function Layout() {
+
+  return (
+    //# <Outlet /> 
+    // : 부모 <Route />에 해당 컴포넌트가 element로 등록되었을 때
+    //   자식 <Route />의 element가 해당 위치에 렌더링되도록 하는 컴포넌트
+
+    <div>
+      <div style={{ height: '100px', backgroundColor: 'red' }}></div>
+      <Outlet />
+      <div style={{ height: '100px', backgroundColor: 'blue' }}></div>
+    </div>
+  )
+
+};
+
 function App() {
   return (
     <Routes>
       <Route index element={<h1>기본 페이지</h1>} />
-      {/* === component === */}
-      <Route path='/component' element={<Component />} />
-      <Route path='/class-component' element={<ClassComponent />} />
-      <Route path='/function-component' element={<FunctonComponent />} />
-      <Route path='/component/curly-braces' element={<CurlyBraces />} />
+      <Route path='/component' element={<Layout />}>
+        {/* 부모 라우트 안에 들어오는 라우트 path 속성에는 '/' 필요없음 */}
+        <Route index element={<Component />} />
+        <Route path='class-component' element={<ClassComponent />} />
+        <Route path='function-component' element={<FunctonComponent />} />
+        <Route path='curly-braces' element={<CurlyBraces />} />
+      </Route>
 
-      {/* === component_manage === */}
-      <Route path='/properties' element={<Properties />} />
-      {/* <Properties /> */}
-      {/* <Gallery /> */}
-      {/* <ConditionalRender /> */}
-      {/* <Example2 /> */}
-      {/* <ListRender /> */}
+      <Route path='/router'>
+        <Route path='query-string' element={<QueryString />} />
+        <Route path='path-variable/:name' element={<PathVariable />} />
+      </Route>
+      <Route path='*' element={<h1>404!!!</h1>} />
+
+      <Route path='/component-manage'>
+        <Route path='properties' element={<Properties />} />
+        <Route path='gallery' element={<Gallery />} />
+        <Route path='conditional-render' element={<ConditionalRender />} />
+        <Route path='/example'>
+          <Route path='example1' element={<Example1 />} />
+          <Route path='example2' element={<Example2 />} />
+        </Route>
+        <Route path='list-render' element={<ListRender />} />
+      </Route>
 
       {/* === interaction === */}
       {/* <EventComponent /> */}
