@@ -4,8 +4,6 @@ import Component, { ClassComponent, FunctonComponent } from './component/Compone
 import CurlyBraces from './component/CurlyBraces';
 import Properties from './component_manage/Properties';
 import Gallery from './component_manage/example/Example1';
-import ConditionalRender from './component_manage/ConditionalRender';
-import Example1 from './component_manage/example/Example1';
 import Example2 from './component_manage/example/Example2';
 import ListRender from './component_manage/ListRender';
 import EventComponent from './interaction/EventComponent';
@@ -14,9 +12,11 @@ import ForwordingComponent from './interaction/ForwordingComponent';
 import HookComponent1 from './hook/HookComponent1';
 import HookComponent2 from './hook/HookComponent2';
 import CustomHook from './hook/CustomHook';
-import { Outlet, Route, Routes } from 'react-router';
+import { Outlet, Route, Routes, useLocation } from 'react-router';
 import QueryString from './router/QueryString';
 import PathVariable from './router/PathVariable';
+import ConditionalRender from './component_manage/ConditionalRender';
+import PathMove from './router/PathMove';
 
 //& npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -45,11 +45,17 @@ import PathVariable from './router/PathVariable';
 
 function Layout() {
 
-  return (
-    //# <Outlet /> 
-    // : 부모 <Route />에 해당 컴포넌트가 element로 등록되었을 때
-    //   자식 <Route />의 element가 해당 위치에 렌더링되도록 하는 컴포넌트
+  //# useLocation :
+  // - 현재 경로에 대한 객체를 반환하는 react-router 훅 함수
+  // - pathname : 현재 path
+  const { pathname } = useLocation();
+  console.log(pathname);
 
+  //# <Outlet /> 
+  // : 부모 <Route />에 해당 컴포넌트가 element로 등록되었을 때
+  //   자식 <Route />의 element가 해당 위치에 렌더링되도록 하는 컴포넌트
+
+  return (
     <div>
       <div style={{ height: '100px', backgroundColor: 'red' }}></div>
       <Outlet />
@@ -71,32 +77,34 @@ function App() {
         <Route path='curly-braces' element={<CurlyBraces />} />
       </Route>
 
-      <Route path='/router'>
-        <Route path='query-string' element={<QueryString />} />
-        <Route path='path-variable/:name' element={<PathVariable />} />
-      </Route>
-      <Route path='*' element={<h1>404!!!</h1>} />
 
       <Route path='/component-manage'>
         <Route path='properties' element={<Properties />} />
         <Route path='gallery' element={<Gallery />} />
         <Route path='conditional-render' element={<ConditionalRender />} />
-        <Route path='/example'>
-          <Route path='example1' element={<Example1 />} />
-          <Route path='example2' element={<Example2 />} />
-        </Route>
+        <Route path='example2' element={<Example2 />} />
         <Route path='list-render' element={<ListRender />} />
       </Route>
 
-      {/* === interaction === */}
-      {/* <EventComponent /> */}
-      {/* <StateComponent /> */}
-      {/* <ForwordingComponent /> */}
+      <Route path='/interaction'>
+        <Route path='event-component' element={<EventComponent />} />
+        <Route path='state-component' element={<StateComponent />} />
+        <Route path='forwording-component' element={<ForwordingComponent />} />
+      </Route>
 
-      {/* === hook === */}
-      {/* <HookComponent1 /> */}
-      {/* <HookComponent2 /> */}
-      {/* <CustomHook /> */}
+      <Route path='/hook'>
+        <Route path='hook-component1' element={<HookComponent1 />} />
+        <Route path='hook-component2' element={<HookComponent2 />} />
+        <Route path='custom-hook' element={<CustomHook />} />
+      </Route>
+
+      <Route path='/router'>
+        <Route path='query-string' element={<QueryString />} />
+        <Route path='path-variable/:name' element={<PathVariable />} />
+        <Route path='path-move' element={<PathMove />} />
+      </Route>
+      <Route path='*' element={<h1>404!!!</h1>} />
+
     </Routes>
   );
 }
