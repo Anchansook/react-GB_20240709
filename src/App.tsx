@@ -17,6 +17,7 @@ import QueryString from './router/QueryString';
 import PathVariable from './router/PathVariable';
 import ConditionalRender from './component_manage/ConditionalRender';
 import PathMove from './router/PathMove';
+import Zustand from './zustand/Zustand';
 
 //& npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -103,8 +104,10 @@ function App() {
         <Route path='path-variable/:name' element={<PathVariable />} />
         <Route path='path-move' element={<PathMove />} />
       </Route>
-      <Route path='*' element={<h1>404!!!</h1>} />
 
+      <Route path='/zustand' element={<Zustand />} />
+
+      <Route path='*' element={<h1>404!!!</h1>} />
     </Routes>
   );
 }
