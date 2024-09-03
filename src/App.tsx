@@ -18,6 +18,7 @@ import PathVariable from './router/PathVariable';
 import ConditionalRender from './component_manage/ConditionalRender';
 import PathMove from './router/PathMove';
 import Zustand from './zustand/Zustand';
+import ReactCookie from './react_cookie/ReactCookie';
 
 //& npm run start 할 시에는 package.json 파일이 있는 자리에서 해야 함!
 
@@ -106,6 +107,8 @@ function App() {
       </Route>
 
       <Route path='/zustand' element={<Zustand />} />
+
+      <Route path='react-cookie' element={<ReactCookie />} />
 
       <Route path='*' element={<h1>404!!!</h1>} />
     </Routes>
