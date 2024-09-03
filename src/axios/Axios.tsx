@@ -17,7 +17,7 @@ export default function Axios() {
     // - get, delete : URL, option(선택)
     // - post, put, patch : URL, data(선택), option(선택)
     axios
-        .get('http://3.34.99.196:400/api/quantification-model')
+        .get('http://3.34.99.196:4000/api/quantification-model')
         // 각각의 http method 메서드는 then으로 response 객체를 받는 콜백 함수를 전달
         .then((response) => {
             // response 객체는 status, header, body(data)를 포함하고 있음
@@ -30,6 +30,24 @@ export default function Axios() {
             // , AxiosError 객체 안의 'response 속성'으로 해당 응답에 접근
             console.log(error);
         });
+
+    // option 매개변수
+    // - request에 대한 각종 설정을 조작할 때 사용
+    axios.get('http://3.34.99.196:4000/api/quantification-model', {
+        headers: { Authorization: 'Bearer klafjakdjfl' },
+        params: { 'time': '1213' }
+    });
+
+    //! 주의! request body가 존재하는 요청에 대해서는 매개변수의 위치 주의
+    axios.post('http://3.34.99.196:4000/api', {}, {
+        headers: { Authorization: 'Bearer klafjakdjfl' },
+        params: { 'time': '1213' }
+    });
+
+    // CORS error
+    // - Cross Origin Resource Sharing
+    // - JavaScript를 이용한 request 요쳥시 출처가 다른 요청에 대하여 자원 공유 정책 
+    axios.get('https://naver.com');
 
     return (
         <div>Axios</div>
